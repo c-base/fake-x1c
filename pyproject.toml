@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "fake-x1c"
+version = "0.1.0"
+description = "Fake the broadcasts of a Bambu Lab X1 Carbon 3D printer so you can use it via VPN."
+authors = ["Uwe Kamper <me@uwekamper.de>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
