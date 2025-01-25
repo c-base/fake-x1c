@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import argparse
 import socket
 from time import sleep
 
@@ -23,7 +24,7 @@ ANNOUNCEMENT_TEMPLATE = \
 
 UDP_PORT_NO = 2021
 
-def main():
+def main(printerip, printername, interval=5.0):
     interfaces = socket.getaddrinfo(host=socket.gethostname(), port=None, family=socket.AF_INET)
     allips = [ip[-1][0] for ip in interfaces]
 
@@ -38,12 +39,19 @@ def main():
             sock.sendto(msg, ("255.255.255.255", UDP_PORT_NO))
             sock.close()
 
-        sleep(5)
-
-
-main()
-
+        sleep(interval)
 
 
 if __name__ == '__main__':
-	main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "printerip",
+        type=str,
+        help="IPv4 address of the Bambu X1C printer (in LAN mode), e.g. 192.168.1.42")
+    parser.add_argument(
+        "printername",
+        type=str,
+        help="printer name as it appears in the device pane of OrcaSlicer/Bambustudio"
+    )
+    args = parser.parse_args()
+    main(args.printerip, args.printername)
