@@ -25,16 +25,17 @@ ANNOUNCEMENT_TEMPLATE = \
 UDP_PORT_NO = 2021
 
 
-    msg = ANNOUNCEMENT_TEMPLATE.format(printerip='10.0.0.217', printername="UKS-UKS-UKS").encode()
+def main(printerip='10.0.0.217', printername="UKS-UKS-UKS", bind_addr="0.0.0.0", interval=5.0):
+    msg = ANNOUNCEMENT_TEMPLATE.format(
+        printerip=printerip, printername=printername).encode()
     while True:
-
-        for ip in allips:
-            print(f'sending on {ip}')
-            sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)  # UDP
-            sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-            sock.bind((ip,0))
-            sock.sendto(msg, ("255.255.255.255", UDP_PORT_NO))
-            sock.close()
+        print(f'sending on {bind_addr}')
+        sock = socket.socket(
+            socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)  # UDP
+        sock.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+        sock.bind((bind_addr, 0))
+        sock.sendto(msg, ("255.255.255.255", UDP_PORT_NO))
+        sock.close()
 
         sleep(interval)
 
@@ -49,6 +50,13 @@ if __name__ == '__main__':
         "printername",
         type=str,
         help="printer name as it appears in the device pane of OrcaSlicer/Bambustudio"
+    )
+    parser.add_argument(
+        "bind_addr",
+        type=str,
+        nargs='?',
+        help="the address to bind to when sending the broadcast message",
+        default="0.0.0.0",
     )
     args = parser.parse_args()
     main(args.printerip, args.printername)
