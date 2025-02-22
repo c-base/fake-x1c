@@ -24,11 +24,12 @@ announcements the X1C is broadcasting.
 ## Usage
 
 ```
-usage: fake_x1c.py [-h] printerip printername
+usage: fake_x1c.py [-h] printerip printername [bind_addr]
 
 positional arguments:
   printerip    IPv4 address of the Bambu X1C printer (in LAN mode), e.g. 192.168.1.42
   printername  printer name as it appears in the device pane of OrcaSlicer/Bambustudio
+  bind_addr    the address to bind to when sending the broadcast message
 
 options:
   -h, --help   show this help message and exit
