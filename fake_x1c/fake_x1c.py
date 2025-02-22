@@ -4,23 +4,26 @@ import socket
 from time import sleep
 
 
-ANNOUNCEMENT_TEMPLATE = \
-    "NOTIFY * HTTP/1.1\r\n" \
-    "Host: 239.255.255.250:1990\r\n" \
-    "Server: Buildroot/2018.02-rc3 UPnP/1.0 ssdpd/1.8\r\n" \
-    "Location: {printerip}\r\n" \
-    "NT: urn:bambulab-com:device:3dprinter:1\r\n" \
-    "NTS: ssdp:alive\r\n" \
-    "USN: 00M09C410701524\r\n" \
-    "Cache-Control: max-age=1800\r\n" \
-    "DevModel.bambu.com: BL-P001\r\n" \
-    "DevName.bambu.com: {printername}\r\n" \
-    "DevSignal.bambu.com: -58\r\n" \
-    "DevConnect.bambu.com: lan\r\n" \
-    "DevBind.bambu.com: free\r\n" \
-    "Devseclink.bambu.com: secure\r\n" \
-    "DevInf.bambu.com: wlan0\r\n" \
-    "\r\n"
+ANNOUNCEMENT_TEMPLATE = ''.join([
+    'NOTIFY * HTTP/1.1\r\n',
+    'Host: 239.255.255.250:1990\r\n',
+    'Server: UPnP/1.0\r\n',
+    'Location: {printerip}\r\n',
+    'NT: urn:bambulab-com:device:3dprinter:1\r\n',
+    'NTS: ssdp:alive\r\n',
+    'USN: 00M09C410701523\r\n',
+    'Cache-Control: max-age=1800\r\n',
+    'DevModel.bambu.com: BL-P001\r\n',
+    'DevName.bambu.com: {printername}\r\n',
+    'DevSignal.bambu.com: -62\r\n',
+    'DevConnect.bambu.com: lan\r\n',
+    'DevBind.bambu.com: free\r\n',
+    'Devseclink.bambu.com: secure\r\n',
+    'DevInf.bambu.com: wlan0\r\n',
+    'DevVersion.bambu.com: 99.00.00.00\r\n',
+    '\r\n',
+])
+
 
 UDP_PORT_NO = 2021
 
