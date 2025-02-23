@@ -36,3 +36,25 @@ options:
 ```
 
 Example: `fake_x1c/fake_x1c.py 10.0.0.217 EXA-MPL-EXX`
+
+## Using sniff_x1c.py to decode the SSDP discovery broadcast:
+
+In order to find out the values for `printerip` and `printername` above, there is a
+small helper program called `sniff_x1c.py`. This script will listen for UDP broadcasts
+of the X1C and print the on the screen. You can copy+paste the output of `sniff_x1c.py`
+into `fake_x1c.py` to make sure your fake messages look exactly like the ones from your
+X1C.
+
+You need to be on the same network and be able to receive the broadcasts for this to work.
+
+## Usage of sniff_x1c.py
+
+```
+usage: sniff_x1x.py [-h] [bind_addr]
+
+positional arguments:
+  bind_addr   IP address to bind the listening socket to.
+
+options:
+  -h, --help  show this help message and exit
+```

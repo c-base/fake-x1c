@@ -4,7 +4,7 @@ import socket
 from time import sleep
 
 
-ANNOUNCEMENT_TEMPLATE = ''.join([
+BROADCAST_MESSAGE = ''.join([
     'NOTIFY * HTTP/1.1\r\n',
     'Host: 239.255.255.250:1990\r\n',
     'Server: UPnP/1.0\r\n',
@@ -29,7 +29,7 @@ UDP_PORT_NO = 2021
 
 
 def main(printerip='10.0.0.217', printername="UKS-UKS-UKS", bind_addr="0.0.0.0", interval=5.0):
-    msg = ANNOUNCEMENT_TEMPLATE.format(
+    msg = BROADCAST_MESSAGE.format(
         printerip=printerip, printername=printername).encode()
     while True:
         print(f'sending on {bind_addr}')
